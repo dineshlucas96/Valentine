@@ -1,0 +1,326 @@
+:root {
+    --primary: #ff4d6d;
+    --primary-light: #ff758f;
+    --bg-gradient: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.6);
+    --text-color: #590d22;
+    --font-heading: 'Great Vibes', cursive;
+    --font-body: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg-gradient);
+    font-family: var(--font-body);
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Floating Hearts Background */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -10vh;
+    color: rgba(255, 77, 109, 0.3);
+    font-size: 2rem;
+    animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    position: relative;
+    padding: 20px;
+}
+
+/* Sections */
+.screen {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: scale(0.95);
+    display: none;
+    /* Hidden by default */
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography */
+.title {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(255, 77, 109, 0.1);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 35px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 10px;
+}
+
+.primary-btn,
+.yes-btn {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.6);
+}
+
+.no-btn {
+    background: white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    position: relative;
+    /* Essential for movement */
+}
+
+.back-btn {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    color: var(--primary);
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* Gift Boxes */
+.gift-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.gift-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    width: 150px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.gift-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(255, 77, 109, 0.3);
+}
+
+.gift-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* Polaroid Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(-3deg);
+    transition: transform 0.3s, z-index 0.3s;
+    width: 200px;
+    position: relative;
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+.polaroid:hover {
+    transform: scale(1.1) rotate(0deg);
+    z-index: 10;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.polaroid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.caption {
+    margin-top: 10px;
+    font-family: 'Indie Flower', cursive, sans-serif;
+    color: #444;
+}
+
+/* Music Player */
+.music-player {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.disk {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(45deg, #000, #333);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    border: 5px solid white;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    animation: rotate 3s linear infinite;
+    animation-play-state: paused;
+}
+
+.disk.playing {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Love Letter */
+.letter-container {
+    background: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-height: 60vh;
+    overflow-y: auto;
+    text-align: left;
+    border: 1px solid #ddd;
+    background-image: linear-gradient(#eee .1rem, transparent .1rem);
+    background-size: 100% 1.2rem;
+    line-height: 1.2rem;
+}
+
+.letter-content {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.5rem;
+    color: #444;
+}
+
+.signature {
+    margin-top: 30px;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+    .title {
+        font-size: 3rem;
+    }
+
+    .screen {
+        padding: 1.5rem;
+    }
+
+    .gallery {
+        gap: 10px;
+    }
+
+    .polaroid {
+        width: 140px;
+        padding: 10px 10px 30px 10px;
+    }
+
+    .gift-box {
+        width: 45%;
+    }
+}
